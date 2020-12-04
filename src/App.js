@@ -1,5 +1,6 @@
 import "./App.css";
-import ExerciseMovieList from "./ExMovies";
+import ShoppingHome from "./shoppingCart";
+// import ExerciseMovieList from "./ExMovies";
 // import ExerciseChangeCarColor from "./ExCars";
 // import DemoDatabinding from "./Databinding";
 // import HomeEx2 from "./ex-2/Home";
@@ -16,7 +17,8 @@ function App() {
       {/* <HomeEx2 /> */}
       {/* <DemoDatabinding /> */}
       {/* <ExerciseChangeCarColor /> */}
-      <ExerciseMovieList />
+      {/* <ExerciseMovieList /> */}
+      <ShoppingHome />
     </div>
   );
 }
