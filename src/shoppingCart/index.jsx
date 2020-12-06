@@ -59,6 +59,7 @@ class ShoppingHome extends Component {
   state = {
     selectedProduct: null,
     cart: [],
+    totalAmount: 0,
   };
 
   getProduct = (prodFromItem) => {
@@ -89,7 +90,26 @@ class ShoppingHome extends Component {
 
     this.setState({
       cart: cloneCart,
+      totalAmount: this.state.totalAmount + prodFromItem.price,
     });
+  };
+
+  removeFromCart = (prodFromItem) => {
+    const cloneCart = [...this.state.cart];
+    const index = cloneCart.findIndex((item) => {
+      return item.product.id === prodFromItem.product.id;
+    });
+
+    if (index !== -1) {
+      cloneCart.splice(index, 1);
+
+      this.setState({
+        cart: cloneCart,
+        totalAmount:
+          this.state.totalAmount -
+          prodFromItem.quantity * prodFromItem.product.price,
+      });
+    }
   };
 
   //truthy :
@@ -107,7 +127,11 @@ class ShoppingHome extends Component {
         {this.state.selectedProduct && (
           <Detail product={this.state.selectedProduct} />
         )}
-        <Cart cart={this.state.cart} />
+        <Cart
+          removeFromCart={this.removeFromCart}
+          totalAmount={this.state.totalAmount}
+          cart={this.state.cart}
+        />
       </>
     );
   }

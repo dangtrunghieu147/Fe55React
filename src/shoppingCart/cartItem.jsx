@@ -1,22 +1,32 @@
 import React, { Component } from "react";
 
 class CartItem extends Component {
+  onDeleteItem = () => {
+    this.props.removeFromCart(this.props.cartItem);
+  };
+
   render() {
-    const { id, name } = this.props.cartItem.product;
+    const { id, name, img, price } = this.props.cartItem.product;
     const { quantity } = this.props.cartItem;
     return (
       <tr>
-        <td>1</td>
+        <td>{id}</td>
         <td>
-          <img src="" alt="product" />
+          <img src={img} style={{ width: 100 }} alt="product" />
         </td>
-        <td>Iphone 12 promax</td>
+        <td>{name}</td>
         <td>
-          <button className="btn btn-info">+</button>1
+          <button className="btn btn-info">+</button>
+          {quantity}
           <button className="btn btn-info">-</button>
         </td>
-        <td>90000</td>
-        <td>12000</td>
+        <td>{price}</td>
+        <td>{quantity * price}</td>
+        <td>
+          <button onClick={this.onDeleteItem} className="btn btn-danger">
+            Delete
+          </button>
+        </td>
       </tr>
     );
   }

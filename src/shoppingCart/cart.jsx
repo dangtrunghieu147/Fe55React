@@ -5,7 +5,13 @@ class Cart extends Component {
   // this.props.cart
   renderCartItem = () => {
     return this.props.cart.map((item, index) => {
-      return <CartItem key={index} cartItem={item} />;
+      return (
+        <CartItem
+          removeFromCart={this.props.removeFromCart}
+          key={index}
+          cartItem={item}
+        />
+      );
     });
   };
 
@@ -48,9 +54,13 @@ class Cart extends Component {
                   <th>Số lượng</th>
                   <th>Đơn giá</th>
                   <th>Thành tiền</th>
+                  <th></th>
                 </tr>
                 {this.renderCartItem()}
               </table>
+              <h2 className="text-right">
+                Total: {this.props.totalAmount.toLocaleString()}
+              </h2>
             </div>
             <div className="modal-footer">
               <button
