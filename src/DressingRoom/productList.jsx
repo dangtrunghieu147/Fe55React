@@ -4,13 +4,32 @@ import { connect } from "react-redux";
 
 class ProductList extends Component {
   renderProducts = () => {
-    return this.props.productList.map((item) => {
-      return (
-        <div className="col-4" key={item.id}>
-          <ProductItem product={item} />
-        </div>
-      );
-    });
+    // const productArr = this.props.selectedCate
+    //   ? this.props.productList.filter((item) => {
+    //       return item.type === this.props.selectedCate;
+    //     })
+    //   : this.props.productList;
+
+    // let productArr;
+    // if (this.props.selectedCate) {
+    //   productArr = this.props.productList.filter((item) => {
+    //     return item.type === this.props.selectedCate;
+    //   });
+    // } else {
+    //   productArr = this.props.productList;
+    // }
+
+    return this.props.productList
+      .filter((item) => {
+        return item.type === this.props.selectedCate;
+      })
+      .map((item) => {
+        return (
+          <div className="col-4" key={item.id}>
+            <ProductItem product={item} />
+          </div>
+        );
+      });
   };
   render() {
     return <div className="row py-4">{this.renderProducts()}</div>;
@@ -27,6 +46,7 @@ class ProductList extends Component {
 const mapStateToProps = (state) => {
   return {
     productList: state.products,
+    selectedCate: state.selectedCate,
   };
 };
 

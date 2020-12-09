@@ -7,11 +7,15 @@ import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import categoryReducer from "./DressingRoom/reducers/category";
 import productReducer from "./DressingRoom/reducers/product";
+import selectedCateReducer from "./DressingRoom/reducers/selectedCate";
+import selectedProductsReducer from "./DressingRoom/reducers/selectedProducts";
 
 const rootReducer = combineReducers({
   // tên dữ liệu: tên reducer quản lý
   categories: categoryReducer,
   products: productReducer,
+  selectedCate: selectedCateReducer,
+  selectedProducts: selectedProductsReducer,
 });
 
 const store = createStore(rootReducer);
